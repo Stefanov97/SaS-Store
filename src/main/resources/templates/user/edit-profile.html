@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main>
+    <h1 class="text-center text-info">Edit Profile</h1>
+    <hr class="hr-2 bg-info w-25">
+    <form class="form w-25 mx-auto" th:action="@{/users/edit}" th:method="post" th:object="${userEditModel}">
+        <div class="form-group">
+            <label for="username" class="font-weight-bold text-info" >Username</label>
+            <input th:value="${session.user.username}" type="text" class="form-control" name="username" id="username" readonly>
+        </div>
+        <div class="form-group">
+            <label for="oldPassword" class="font-weight-bold text-info">Old Password</label>
+            <input type="password" class="form-control" id="oldPassword" placeholder="Password..." name="oldPassword" required>
+            <th:block th:if="${#fields.hasErrors('oldPassword')}">
+                <p th:errors="*{oldPassword}" class="alert alert-danger"></p>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <label for="password" class="font-weight-bold text-info">New Password</label>
+            <input  type="password" class="form-control" id="password" placeholder="New Password..." name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword" class="font-weight-bold text-info">Confirm New Password</label>
+            <input  type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password..." name="confirmPassword" required>
+            <th:block th:if="${#fields.hasErrors('password')}">
+                <p th:errors="*{password}" class="alert alert-danger"></p>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <label for="email" class="font-weight-bold text-info">Email</label>
+            <input th:value="${session.user.email}" type="email" class="form-control" id="email" placeholder="Email..." name="email">
+            <th:block th:if="${#fields.hasErrors('email')}">
+                <p th:errors="*{email}" class="alert alert-danger"></p>
+            </th:block>
+        </div>
+        <hr class="hr-2 bg-info">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-indigo">Edit</button>
+        </div>
+    </form>
+
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+
+</html>

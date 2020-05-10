@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main>
+    <div class="text-center mb-3"> </div>
+
+    <div class="container">
+        <div class="text-center">
+            <div class="row flex-md-row">
+                <th:block th:each="product :${products}">
+                    <div class="col-md-4 text-center">
+                        <h2 th:text="${product.brand}"></h2>
+                        <h2 th:text="${product.price + ' BGN'}"></h2>
+                        <img th:src="${product.imageUrl}" width="250" height="300">
+                        <th:block th:unless="${session.user == null}">
+                            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <h2></h2>
+                        <a class="btn btn-warning" th:href="@{'/'}">Edit Product</a>
+
+                        <h2></h2>
+                        <a class="btn btn-danger" th:href="@{'/'}">Delete Product</a>
+                            </div>
+                        </th:block>
+                        <h2></h2>
+                        <a class="btn btn-info" th:href="@{'/'}">Details</a>
+                        <h2></h2>
+                        <th:block th:unless="${session.user == null}">
+                        <a class="btn btn-indigo" th:href="@{'/'}">Add to cart</a>
+                        </th:block>
+                        </div>
+                </th:block>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="page-footer font-small indigo f-sticky">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+
+</html>

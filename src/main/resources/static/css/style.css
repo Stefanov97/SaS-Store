@@ -1,0 +1,36 @@
+
+footer {
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    flex-grow: 1;
+
+}
+.f-sticky{
+    position:sticky;
+    bottom:0;
+    width: 100%;
+    flex-grow: 1;
+}
+.type-title{
+    color: #3F51B5;
+}
+.topics{
+    margin-top: 120px;
+}
+.welcome-message{
+    margin-top: 40px;
+}
+.w-15 {
+    width: 15%;
+}
+.alert {
+    width:100%;
+   font-size: small;
+}
+.prf{
+    margin-top: 100px;
+}
+.my-orders{
+    margin-top: 70px;
+}

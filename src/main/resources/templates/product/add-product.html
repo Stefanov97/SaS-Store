@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main>
+    <h1 class="text-center text-dark">Add Product</h1>
+    <hr class="hr-2 bg-dark w-25">
+    <form id="add-product-form" class="form w-25 mx-auto" th:action="@{/products/create}" th:method="post"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="add-product-brand" class="font-weight-bold">Brand</label>
+            <input type="text" class="form-control text-center" id="add-product-brand" name="brand" required>
+        </div>
+        <div class="form-group">
+            <label for="add-product-model" class="font-weight-bold">Model</label>
+            <input type="text" class="form-control text-center" id="add-product-model" name="model" required>
+        </div>
+        <div class="form-group">
+            <label for="add-product-origin" class="font-weight-bold">Origin</label>
+            <input type="text" class="form-control text-center" id="add-product-origin" name="origin" required>
+        </div>
+        <div class="form-group">
+            <label for="add-product-color" class="font-weight-bold">Color</label>
+            <br>
+            <select id="add-product-color" name="color">
+                <option value="white" >White</option>
+                <option value="inox" >Inox</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-energyClass" class="font-weight-bold">Energy Class</label>
+            <br>
+            <select id="add-product-energyClass" name="energyClass">
+                <option value="B" >B</option>
+                <option value="A" selected >A</option>
+                <option value="A+">A+</option>
+                <option value="A++">A++</option>
+                <option value="A+++">A+++</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-type" class="font-weight-bold">Type</label>
+            <br>
+            <select id="add-product-type" name="type">
+                <option value="refrigerator" >Refrigerator</option>
+                <option value="washing-machine" >Washing Machine</option>
+                <option value="boiler">Boiler</option>
+                <option value="air-conditioner" >Air Conditioner</option>
+            </select>
+        </div>
+        <div class="form-group w-25">
+            <label for="add-product-power-consumption" class="font-weight-bold">Power Consumption</label>
+            <input type="number" step="any" class="form-control text-center" id="add-product-power-consumption" name="powerConsumption" required>
+        </div>
+        <div class="form-group w-25">
+            <label for="add-product-height" class="font-weight-bold">Height</label>
+            <input type="number" step="any" class="form-control text-center" id="add-product-height" name="height" required>
+        </div>
+        <div class="form-group w-25">
+            <label for="add-product-width" class="font-weight-bold">Width</label>
+            <input type="number" step="any" class="form-control text-center" id="add-product-width" name="width" required>
+        </div>
+        <div class="form-group w-25">
+            <label for="add-product-depth" class="font-weight-bold">Depth</label>
+            <input type="number" step="any" class="form-control text-center" id="add-product-depth" name="depth" required>
+        </div>
+        <div class="form-group w-25">
+            <label for="add-product-price" class="font-weight-bold">Price</label>
+            <input type="number" step="any" class="form-control text-center" id="add-product-price" name="price" required>
+        </div>
+        <hr class="hr-2 bg-dark w-25">
+        <div class="button-holder d-flex justify-content-center">
+            <input type="submit" class="btn btn-indigo" value="Continue">
+        </div>
+    </form>
+
+</main>
+<footer class="page-footer font-small indigo f-sticky">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+
+
+</body>
+
+</html>

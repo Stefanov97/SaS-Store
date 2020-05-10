@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main>
+    <h1 class="text-center text-dark">Add Product</h1>
+    <hr class="hr-2 bg-dark w-25">
+    <form id="add-product-form" class="form w-25 mx-auto" th:action="@{/products/create/refrigerator}" th:method="post"
+          enctype="multipart/form-data">
+        <div class="form-group w-25">
+            <label for="add-product-liters" class="font-weight-bold">Liters</label>
+            <input type="number" class="form-control text-center" id="add-product-liters" name="liters" required>
+        </div>
+        <div class="form-group">
+            <label for="add-product-doors-count" class="font-weight-bold">Doors Count</label>
+            <br>
+            <select id="add-product-doors-count" name="doorsCount">
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-isNoFrost" class="font-weight-bold">No Frost</label>
+            <br>
+            <select id="add-product-isNoFrost" name="noFrost">
+                <option value="true" >Yes</option>
+                <option value="false" >No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-hasWaterDispenser" class="font-weight-bold">Water Dispenser</label>
+            <br>
+            <select id="add-product-hasWaterDispenser" name="hasWaterDispenser">
+                <option value="true" >Yes</option>
+                <option value="false" >No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-refrigerant" class="font-weight-bold">Refrigerant</label>
+            <br>
+            <select id="add-product-refrigerant" name="refrigerant">
+                <option value="r134" >R134</option>
+                <option value="r600" >R600</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-image" class="font-weight-bold">Image</label>
+            <input type="file" class="form-control-file" id="add-product-image" name="image" required>
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <input type="submit" class="btn btn-indigo" value="Add">
+        </div>
+        <div class="form-group">
+            <label for="add-product-brand" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.brand}" id="add-product-brand" name="brand">
+        </div>
+        <div class="form-group">
+            <label for="add-product-model" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.model}" id="add-product-model" name="model">
+        </div>
+        <div class="form-group">
+            <label for="add-product-origin" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.origin}" id="add-product-origin" name="origin">
+        </div>
+        <div class="form-group">
+            <label for="add-product-color" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.color}" id="add-product-color" name="color">
+        </div>
+        <div class="form-group">
+            <label for="add-product-energyClass" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.energyClass}" id="add-product-energyClass" name="energyClass">
+        </div>
+        <div class="form-group">
+            <label for="add-product-type" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.type}" id="add-product-type" name="type">
+        </div>
+        <div class="form-group">
+            <label for="add-product-height" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.height}" id="add-product-height" name="height">
+        </div>
+        <div class="form-group">
+            <label for="add-product-width" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.width}" id="add-product-width" name="width">
+        </div>
+        <div class="form-group">
+            <label for="add-product-depth" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.depth}" id="add-product-depth" name="depth">
+        </div>
+        <div class="form-group">
+            <label for="add-product-power-consumption" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.powerConsumption}" id="add-product-power-consumption" name="powerConsumption">
+        </div>
+        <div class="form-group">
+            <label for="add-product-price" class="font-weight-bold"></label>
+            <input type="hidden" class="form-control text-center" th:value="${session.product.price}" id="add-product-price" name="price">
+        </div>
+    </form>
+
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+
+</html>
