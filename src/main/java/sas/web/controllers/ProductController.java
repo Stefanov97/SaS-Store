@@ -1,9 +1,11 @@
 package sas.web.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import sas.data.models.Refrigerator;
@@ -35,7 +37,7 @@ private final ModelMapper mapper;
     @PostMapping("/products/create")
     public ModelAndView addProduct(ModelAndView modelAndView, @ModelAttribute ProductCreateModel model, HttpSession session){
         session.setAttribute("product", model);
-        modelAndView.setViewName("/product/add-" + model.getType());
+        modelAndView.setViewName("/product/add-" + model.getType().toLowerCase());
         return modelAndView;
     }
 
@@ -116,6 +118,23 @@ private final ModelMapper mapper;
         List<WashingMachineServiceModel> washingMachines = this.productService.getAllWashingMachines();
         modelAndView.addObject("products",washingMachines);
         modelAndView.setViewName("/product/show-products");
+        return modelAndView;
+    }
+
+    @GetMapping("products/details/{model}")
+    public String getProductDetails(@PathVariable String model, ModelAndView modelAndView, HttpSession session){
+        ProductCreateModel product = this.mapper.map(this.productService.getProductByModel(model), ProductCreateModel.class);
+        session.setAttribute("detailsModel", product);
+       return ("/product/details-" + product.getType().toLowerCase());
+
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("products/delete/{model}")
+    public ModelAndView deleteProductByModel(@PathVariable String model, ModelAndView modelAndView){
+        ProductCreateModel product = this.mapper.map(this.productService.getProductByModel(model), ProductCreateModel.class);
+        String url = "/products/" + product.getType() + "s";
+        this.productService.deleteByModel(model);
+        modelAndView.setViewName(String.format("redirect:%s",url));
         return modelAndView;
     }
 }

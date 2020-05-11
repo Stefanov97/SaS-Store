@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main>
+    <main>
+        <hr class="my-3"/>
+        <div class="text-center mb-4">
+            <h1 class="font-weight-bold">Details</h1>
+        </div>
+        <hr class="my-3"/>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="label mt-2">
+                        <h2 class="text-center font-weight-bold">Brand</h2>
+                        <h4 class="text-center" th:text="${#strings.capitalize(session.detailsModel.brand)}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Model</h2>
+                        <h4 class="text-center" th:text="${#strings.capitalize(session.detailsModel.model)}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Capacity</h2>
+                        <h4 class="text-center" th:text="${session.detailsModel.capacity} + ' KG'"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Price</h2>
+                        <h4 class="text-center" th:text="${session.detailsModel.price} + ' BGN'"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Origin</h2>
+                        <h4 class="text-center" th:text="${#strings.capitalize(session.detailsModel.origin)}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Color</h2>
+                        <h4 class="text-center" th:text="${#strings.capitalize(session.detailsModel.color)}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Energy Class</h2>
+                        <h4 class="text-center" th:text="${session.detailsModel.energyClass}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Dimensions: Height/Weight/Depth (cm)</h2>
+                        <h4 class="text-center" th:text="${session.detailsModel.height} + '/' + ${session.detailsModel.width} + '/' + ${session.detailsModel.depth}"></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center font-weight-bold">Power Consumption</h2>
+                        <h4 class="text-center" th:text="${session.detailsModel.powerConsumption} + ' kW'"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="my-3"/>
+    </main>
+
+</main>
+<footer class="page-footer font-small indigo f-sticky">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+
+</html>

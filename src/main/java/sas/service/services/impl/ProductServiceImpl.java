@@ -8,6 +8,7 @@ import sas.service.models.*;
 import sas.service.services.CloudinaryService;
 import sas.service.services.ProductService;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,5 +88,16 @@ public class ProductServiceImpl implements ProductService {
     public List<WashingMachineServiceModel> getAllWashingMachines() {
         List<Product> washingMachines = this.productRepository.findAllByType(WASHING_MACHINE);
         return washingMachines.stream().map(washingMachine-> this.mapper.map(washingMachine,WashingMachineServiceModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProductServiceModel getProductByModel(String model) {
+        return this.mapper.map(this.productRepository.findByModel(model),ProductServiceModel.class);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByModel(String model) {
+        this.productRepository.deleteByModel(model);
     }
 }

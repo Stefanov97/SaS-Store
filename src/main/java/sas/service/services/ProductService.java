@@ -25,4 +25,8 @@ public interface ProductService {
     List<BoilerServiceModel> getAllBoilers();
 
     List<WashingMachineServiceModel> getAllWashingMachines();
+
+    ProductServiceModel getProductByModel(String model);
+
+    void deleteByModel(String model);
 }

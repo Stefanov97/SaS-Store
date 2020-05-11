@@ -28,7 +28,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/favicon.ico", "/css/*", "/img/*", "/js/*").permitAll()
-                .antMatchers("/", "/users/register", "/users/login", "/contacts", "/products/refrigerators", "/products/air-conditioners", "/products/boilers", "/products/washing-machines").permitAll()
+                .antMatchers("/", "/users/register", "/users/login", "/contacts", "/products/refrigerators", "/products/air-conditioners", "/products/boilers", "/products/washing-machines", "/products/details/**").permitAll()
 //                .antMatchers("/items/add").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
