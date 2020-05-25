@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main class="container content">
+    <h1 class="text-center">My orders</h1>
+    <hr class="hr-3"/>
+    <table class="table bg-blur table-hover">
+        <thead>
+        <tr>
+            <th scope="col" class="font-weight-bold">Order #</th>
+            <th scope="col" class="font-weight-bold">Customer</th>
+            <th scope="col" class="font-weight-bold">Total price</th>
+            <th scope="col" class="font-weight-bold">Created on</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody th:each="order: ${orders}">
+        <tr class="bg-blur">
+            <td th:text="${order.orderNumber}"></td>
+            <td th:text="${session.user.username}"></td>
+            <td th:text="${order.totalPrice} + ' BGN'"></td>
+            <td th:text="${#temporals.format(order.createdOn, 'dd-MM-yyyy HH:mm')}"></td>
+            <td>
+                <form action="/order-products">
+                    <input type="hidden" name="orderId" th:value="${order.id}">
+                    <button class="btn btn-info">View Products</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+</html>

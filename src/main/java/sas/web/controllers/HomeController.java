@@ -36,8 +36,7 @@ public class HomeController {
     }
 
     @GetMapping("/contacts")
-    public ModelAndView getContactPage(ModelAndView modelAndView){
-        modelAndView.setViewName("/home/contacts");
-        return modelAndView;
+    public String getContactPage(){
+        return "/home/contacts";
     }
 }

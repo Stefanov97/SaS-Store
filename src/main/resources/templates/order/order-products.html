@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main class="container content">
+    <h1 class="text-center">Order Products</h1>
+    <hr class="hr-3"/>
+    <table class="table bg-blur table-hover">
+        <thead>
+        <tr>
+            <th scope="col" class="font-weight-bold">Brand</th>
+            <th scope="col" class="font-weight-bold">Model</th>
+            <th scope="col" class="font-weight-bold">Quantity</th>
+            <th scope="col" class="font-weight-bold">Price</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody th:each="product: ${products}">
+        <tr class="bg-blur">
+            <td th:text="${product.product.brand}"></td>
+            <td th:text="${product.product.model}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.product.price * product.quantity} + ' BGN'"></td>
+            <td>
+                <img th:src="${product.product.imageUrl}" alt="product image" height="75px" width="75px"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+
+</html>

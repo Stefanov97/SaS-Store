@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<th:block th:include="~{fragments/head}"/>
+
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main class="container content">
+    <th:block th:if="${session.products == null}">
+        <h1 class="text-center text-info sc-text">Your Shopping Cart Is Empty</h1>
+        <img class="img-responsive" src="https://chillydraji.files.wordpress.com/2015/08/empty_cart.jpeg">
+    </th:block>
+    <th:block th:unless="${session.products == null}">
+        <h1 class="text-center text-info sc-text">Shopping Cart:</h1>
+        <br>
+        <table class="table bg-blur table-hover">
+            <thead>
+            <tr>
+                <th scope="col" class="font-weight-bold">Brand</th>
+                <th scope="col" class="font-weight-bold">Model</th>
+                <th scope="col" class="font-weight-bold">Price</th>
+                <th scope="col" class="font-weight-bold">Quantity</th>
+                <th scope="col" class="font-weight-bold">Action</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody id="products-in-card">
+            </tbody>
+        </table>
+        <div class="col-md-12 text-center">
+            <h2 id="cart-total-price"></h2>
+            <a style="margin-bottom: 10px" class="btn btn-indigo" th:href="@{'/create-order'}">Buy Now</a>
+        </div>
+    </th:block>
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="/js/shopping-cart.js"></script>
+
+</body>
+</html>

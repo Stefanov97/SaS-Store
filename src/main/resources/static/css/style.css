@@ -1,36 +1,141 @@
 
 footer {
-    position:fixed;
-    bottom:0;
     width: 100%;
-    flex-grow: 1;
+    height: 245px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
 
+.content {
+    padding-bottom: 250px;
+    /* Height of the footer element */
 }
-.f-sticky{
-    position:sticky;
-    bottom:0;
-    width: 100%;
-    flex-grow: 1;
-}
-.type-title{
-    color: #3F51B5;
-}
-.topics{
+.m-top-120{
     margin-top: 120px;
 }
-.welcome-message{
-    margin-top: 40px;
+.m-top-50{
+    margin-top: 50px;
 }
+.m-top-20{
+    margin-top: 20px;
+}
+.indigo-color {
+    color: #3F51B5;
+}
+
+.topics {
+    margin-top: 120px;
+}
+
 .w-15 {
     width: 15%;
 }
+
 .alert {
-    width:100%;
-   font-size: small;
+    width: 100%;
+    font-size: small;
 }
-.prf{
+
+.prf {
     margin-top: 100px;
 }
-.my-orders{
+
+.my-orders {
     margin-top: 70px;
+}
+
+.img-responsive {
+    display: block;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.sc-text {
+    margin-top: 80px;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+.qty {
+    width: 35px;
+    text-align: center;
+
+}
+
+.m-left-40 {
+    margin-left: 40px;
+}
+
+.bg-blur {
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    z-index: 2;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
 }

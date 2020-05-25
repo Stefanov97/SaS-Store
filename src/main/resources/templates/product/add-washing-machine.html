@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+>
 <th:block th:include="~{fragments/head}"/>
-
 <body>
 <th:block th:include="~{fragments/header}"/>
-<main>
+<main class="content">
     <h1 class="text-center text-dark">Add Product</h1>
     <hr class="hr-2 bg-dark w-25">
-    <form id="add-product-form" class="form w-25 mx-auto" th:action="@{/products/create/washing-machine}" th:method="post"
+    <form id="add-product-form" class="form w-25 mx-auto" th:action="@{/products/create/washing-machine}"
+          th:method="post"
           enctype="multipart/form-data">
         <div class="form-group w-25">
             <label for="add-product-capacity" class="font-weight-bold">Capacity</label>
@@ -24,50 +24,60 @@
         </div>
         <div class="form-group">
             <label for="add-product-brand" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.brand}" id="add-product-brand" name="brand">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.brand}"
+                   id="add-product-brand" name="brand">
         </div>
         <div class="form-group">
             <label for="add-product-model" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.model}" id="add-product-model" name="model">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.model}"
+                   id="add-product-model" name="model">
         </div>
         <div class="form-group">
             <label for="add-product-origin" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.origin}" id="add-product-origin" name="origin">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.origin}"
+                   id="add-product-origin" name="origin">
         </div>
         <div class="form-group">
             <label for="add-product-color" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.color}" id="add-product-color" name="color">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.color}"
+                   id="add-product-color" name="color">
         </div>
         <div class="form-group">
             <label for="add-product-energyClass" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.energyClass}" id="add-product-energyClass" name="energyClass">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.energyClass}"
+                   id="add-product-energyClass" name="energyClass">
         </div>
         <div class="form-group">
             <label for="add-product-type" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.type}" id="add-product-type" name="type">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.type}"
+                   id="add-product-type" name="type">
         </div>
         <div class="form-group">
             <label for="add-product-height" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.height}" id="add-product-height" name="height">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.height}"
+                   id="add-product-height" name="height">
         </div>
         <div class="form-group">
             <label for="add-product-width" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.width}" id="add-product-width" name="width">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.width}"
+                   id="add-product-width" name="width">
         </div>
         <div class="form-group">
             <label for="add-product-depth" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.depth}" id="add-product-depth" name="depth">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.depth}"
+                   id="add-product-depth" name="depth">
         </div>
         <div class="form-group">
             <label for="add-product-power-consumption" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.powerConsumption}" id="add-product-power-consumption" name="powerConsumption">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.powerConsumption}"
+                   id="add-product-power-consumption" name="powerConsumption">
         </div>
         <div class="form-group">
             <label for="add-product-price" class="font-weight-bold"></label>
-            <input type="hidden" class="form-control text-center" th:value="${session.product.price}" id="add-product-price" name="price">
+            <input type="hidden" class="form-control text-center" th:value="${session.product.price}"
+                   id="add-product-price" name="price">
         </div>
     </form>
-
 </main>
 <footer class="page-footer font-small indigo">
     <th:block th:include="~{fragments/footer}"/>

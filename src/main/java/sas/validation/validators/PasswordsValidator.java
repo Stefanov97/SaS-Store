@@ -1,6 +1,6 @@
 package sas.validation.validators;
 import sas.validation.annotations.PasswordsMatch;
-import sas.web.models.UserEditProfileModel;
+import sas.web.models.UserEditPasswordModel;
 import sas.web.models.UserRegisterModel;
 
 import javax.validation.ConstraintValidator;
@@ -17,13 +17,10 @@ public class PasswordsValidator implements ConstraintValidator<PasswordsMatch,Ob
 
             valid =  user.getPassword().equals(user.getConfirmPassword());
         }else {
-            UserEditProfileModel user = (UserEditProfileModel) userModel;
+            UserEditPasswordModel user = (UserEditPasswordModel) userModel;
 
             valid =  user.getPassword().equals(user.getConfirmPassword());
         }
-
-
-
         if (!valid){
             constraintValidatorContext.buildConstraintViolationWithTemplate(message)
                     .addPropertyNode(firstFieldName)

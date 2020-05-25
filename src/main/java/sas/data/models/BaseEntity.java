@@ -17,11 +17,11 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseEntity {
     @Id
-        @GeneratedValue(generator = "uuid-string")
-        @GenericGenerator(
-                name = "uuid-string",
-                strategy = "org.hibernate.id.UUIDGenerator"
-        )
-        @Column(name = "id", nullable = false, unique = true, updatable = false)
+    @GeneratedValue(generator = "uuid-string")
+    @GenericGenerator(
+            name = "uuid-string",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", nullable = false, unique = true, updatable = false)
     String id;
 }

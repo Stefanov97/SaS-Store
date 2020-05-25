@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<th:block th:include="~{fragments/head}"/>
+<body>
+<th:block th:include="~{fragments/header}"/>
+<main class="content">
+    <h1 class="text-center text-info">Edit Product</h1>
+    <hr class="hr-2 bg-info w-25">
+    <form class="form w-25 mx-auto" th:action="@{/products/edit}" th:method="post" th:object="${editProduct}"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="brand" class="font-weight-bold text-info">Brand</label>
+            <input th:value="*{brand}" type="text" class="form-control" name="brand" id="brand" readonly>
+        </div>
+        <div class="form-group">
+            <label for="model" class="font-weight-bold text-info">Model</label>
+            <input th:value="*{model}" type="text" class="form-control" name="model" id="model" readonly>
+        </div>
+        <div class="form-group">
+            <label for="price" class="font-weight-bold text-info">Edit Price</label>
+            <input th:value="*{price}" type="number" class="form-control" id="price" name="price" step=".01">
+        </div>
+        <div class="form-group">
+            <label for="edit-product-image" class="font-weight-bold text-info">Edit Image</label>
+            <input type="file" class="form-control-file" id="edit-product-image" name="image">
+        </div>
+        <hr class="hr-2 bg-info">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-indigo">Edit</button>
+        </div>
+        <div class="form-group">
+            <input th:value="*{type}" type="hidden" class="form-control" id="type" name="type">
+        </div>
+    </form>
+</main>
+<footer class="page-footer font-small indigo">
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</body>
+</html>

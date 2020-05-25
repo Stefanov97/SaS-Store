@@ -1,15 +1,17 @@
 package sas.data.models;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "products")
 @Inheritance(strategy = InheritanceType.JOINED)
-public  class Product extends BaseEntity {
+public class Product extends BaseEntity {
     @Column(name = "image_url")
     private String imageUrl;
     @Column

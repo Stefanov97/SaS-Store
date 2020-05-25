@@ -29,7 +29,6 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .authorizeRequests()
                 .antMatchers("/favicon.ico", "/css/*", "/img/*", "/js/*").permitAll()
                 .antMatchers("/", "/users/register", "/users/login", "/contacts", "/products/refrigerators", "/products/air-conditioners", "/products/boilers", "/products/washing-machines", "/products/details/**").permitAll()
-//                .antMatchers("/items/add").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -38,10 +37,12 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/",true)
-//                .successHandler(this.authenticationSuccessHandler)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
     }
     @Bean
     @Override

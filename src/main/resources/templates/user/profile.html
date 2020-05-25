@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+>
 <th:block th:include="~{fragments/head}"/>
-
 <body>
 <th:block th:include="~{fragments/header}"/>
-<main>
+<main class="content">
     <div class="button-holder d-flex justify-content-center my-orders">
-        <a th:href="@{/users/edit}" class="btn bg-info text-white">My Orders</a>
+        <a th:href="@{/my-orders}" class="btn bg-info text-white">My Orders</a>
     </div>
     <div class="jumbotron prf">
-
         <div class="row">
             <div class="col col-md-6 text-center">
                 <h1 th:text="Username"></h1>
@@ -24,14 +22,13 @@
         </div>
         <hr class="hr-2 bg-dark">
         <div class="button-holder d-flex justify-content-center">
-            <a th:href="@{/users/edit}" class="btn bg-warning text-white">Edit Profile</a>
+            <a th:href="@{/users/edit-password}" class="btn bg-warning text-white">Edit Password</a>
+            <a th:href="@{/users/edit-email}" class="btn bg-warning text-white">Edit Email</a>
         </div>
     </div>
-
 </main>
 <footer class="page-footer font-small indigo">
     <th:block th:include="~{fragments/footer}"/>
 </footer>
 </body>
-
 </html>

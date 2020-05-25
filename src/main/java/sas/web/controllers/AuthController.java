@@ -18,51 +18,54 @@ import sas.web.models.UserRegisterModel;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/users")
 public class AuthController {
     @ModelAttribute("userRegisterModel")
     public UserRegisterModel userRegisterModel() {
         return new UserRegisterModel();
     }
+
     private final ModelMapper mapper;
     private final AuthService authService;
 
     @Autowired
-    public AuthController(ModelMapper mapper, AuthService authService){
+    public AuthController(ModelMapper mapper, AuthService authService) {
         this.mapper = mapper;
         this.authService = authService;
     }
 
-    @GetMapping("/register")
-    public ModelAndView getRegisterForm(ModelAndView modelAndView){
+    @GetMapping("/users/register")
+    public String getRegisterForm() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = this.authService.checkIfLogged(auth);
         if (isUserLogged) {
-            return new ModelAndView("redirect:/home");
+            return "redirect:/";
         }
-        modelAndView.setViewName("/auth/register");
-        return modelAndView;
+        return "/auth/register";
     }
 
-    @PostMapping("/register")
-    public String register( @Valid @ModelAttribute("userRegisterModel") UserRegisterModel registerModel, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-          return "/auth/register";
-        }else {
+    @PostMapping("/users/register")
+    public String register(@Valid @ModelAttribute("userRegisterModel") UserRegisterModel registerModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/auth/register";
+        } else {
             this.authService.register(this.mapper.map(registerModel, UserServiceModel.class));
-          return "/auth/login";
+            return "/auth/login";
         }
 
     }
 
-    @GetMapping("/login")
-    public ModelAndView getLoginForm(ModelAndView modelAndView){
+    @GetMapping("/users/login")
+    public String getLoginForm() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = this.authService.checkIfLogged(auth);
         if (isUserLogged) {
-            return new ModelAndView("redirect:/");
+            return "redirect:/";
         }
-        modelAndView.setViewName("/auth/login");
-        return modelAndView;
+        return "/auth/login";
+    }
+
+    @GetMapping("access-denied")
+    public String accessDenied() {
+        return "access-denied";
     }
 }

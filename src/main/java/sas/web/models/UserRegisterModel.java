@@ -24,6 +24,4 @@ public class UserRegisterModel {
     @Pattern(regexp = "^[^@\\s]+@[^@\\s.]+\\.[^@.\\s]+$", message = "Please enter a valid email")
     @UniqueEmail
     private String email;
-
-
 }

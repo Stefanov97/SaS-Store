@@ -30,6 +30,7 @@ public class ProductServiceModel {
     private boolean hasWaterDispenser;
     private String refrigerant;
     private MultipartFile image;
+    private String imageUrl;
     private int recommendedVolumeForCooling;
     private int recommendedVolumeForHeating;
     private double coolingPowerOutput;

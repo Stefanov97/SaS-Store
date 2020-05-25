@@ -2,45 +2,48 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="~{fragments/head}"/>
-
 <body>
 <th:block th:include="~{fragments/header}"/>
-<main>
-    <h1 class="text-center">Register</h1>
-    <hr class="hr-3"/>
+<main class="content">
+    <h1 class="text-center m-top-50 text-info">Register</h1>
+    <hr class="hr-3 w-15"/>
     <form class="mx-auto w-15" th:action="@{/users/register}" method="post" th:object="${userRegisterModel}">
-        <div class="form-group">
+        <div class="form-group m-top-50">
             <div class="label-holder textCol d-flex justify-content-center field-item">
-                <label for="username" class="h4 mb-2">Username</label>
+                <label for="username" class="h4 mb-2 text-info">Username</label>
             </div>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" th:field="*{username}"/>
+            <input type="text" class="form-control m-top-20" id="username" name="username" placeholder="Username"
+                   th:field="*{username}" required/>
             <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
         </div>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
-                <label for="email" class="h4 mb-2">Email</label>
+                <label for="email" class="h4 mb-2 text-info">Email</label>
             </div>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}"/>
+            <input type="email" class="form-control m-top-20" id="email" name="email" placeholder="Email"
+                   th:field="*{email}" required/>
             <p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
         </div>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
-                <label for="password" class="h4 mb-2">Password</label>
+                <label for="password" class="h4 mb-2 text-info">Password</label>
             </div>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" th:field="*{password}"/>
+            <input type="password" class="form-control m-top-20" id="password" name="password" placeholder="Password"
+                   th:field="*{password}" required/>
             <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
         </div>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
-                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                <label for="confirmPassword" class="h4 mb-2 text-info">Confirm Password</label>
             </div>
-            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" th:field="*{confirmPassword}"/>
-            <p class="alert alert-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+            <input class="form-control m-top-20" type="password" id="confirmPassword" name="confirmPassword"
+                   placeholder="Confirm Password" th:field="*{confirmPassword}" required/>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('confirmPassword')}"
+               th:errors="*{confirmPassword}"></p>
         </div>
         <div class="button-holder d-flex justify-content-center">
-            <button class="btn btn-info text-white mb-3" type="submit" >Register</button>
+            <button class="btn btn-info text-white mb-3" type="submit">Register</button>
         </div>
-
     </form>
 </main>
 <footer class="page-footer font-small indigo">

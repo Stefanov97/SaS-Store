@@ -1,7 +1,6 @@
 package sas.validation.annotations;
 
 import sas.validation.validators.EmailValidator;
-import sas.validation.validators.UsernameValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

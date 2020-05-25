@@ -10,13 +10,7 @@ public interface ProductService {
 
     ProductServiceModel getById(String id);
 
-    void addRefrigerator(ProductServiceModel product) throws IOException;
-
-    void addWashingMachine(ProductServiceModel product) throws IOException;
-
-    void addBoiler(ProductServiceModel product) throws IOException;
-
-    void addAirConditioner(ProductServiceModel product) throws IOException;
+    ProductServiceModel getByModel(String model);
 
     List<RefrigeratorServiceModel> getAllRefrigerators();
 
@@ -26,7 +20,15 @@ public interface ProductService {
 
     List<WashingMachineServiceModel> getAllWashingMachines();
 
-    ProductServiceModel getProductByModel(String model);
+    void addRefrigerator(ProductServiceModel product) throws IOException;
+
+    void addWashingMachine(ProductServiceModel product) throws IOException;
+
+    void addBoiler(ProductServiceModel product) throws IOException;
+
+    void addAirConditioner(ProductServiceModel product) throws IOException;
 
     void deleteByModel(String model);
+
+    void editProduct(ProductServiceModel product) throws IOException;
 }

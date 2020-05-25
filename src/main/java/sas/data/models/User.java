@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 
 @Setter
@@ -22,7 +21,6 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     @Column
     private String email;
-
 
 
     @Column
@@ -82,6 +80,9 @@ public class User extends BaseEntity implements UserDetails {
         return true;
     }
 
+    public void addAuthority(Role authority) {
+        this.authorities.add(authority);
+    }
 
 
 }

@@ -4,17 +4,22 @@ package sas.web.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import sas.web.interceptors.FaviconInterceptor;
+import sas.web.interceptors.PageTitleInterceptor;
 
-//@Configuration
+@Configuration
 public class ApplicationWebConfiguration implements WebMvcConfigurer {
-//    private final UserHeroInterceptor userHeroInterceptor;
+    private final FaviconInterceptor faviconInterceptor;
+    private final PageTitleInterceptor pageTitleInterceptor;
 
-//    public ApplicationWebConfiguration(UserHeroInterceptor userHeroInterceptor){
-//        this.userHeroInterceptor = userHeroInterceptor;
-//    }
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(this.userHeroInterceptor);
-//    }
+    public ApplicationWebConfiguration(FaviconInterceptor faviconInterceptor, PageTitleInterceptor pageTitleInterceptor) {
+        this.faviconInterceptor = faviconInterceptor;
+        this.pageTitleInterceptor = pageTitleInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(this.faviconInterceptor);
+        registry.addInterceptor(this.pageTitleInterceptor);
+    }
 }

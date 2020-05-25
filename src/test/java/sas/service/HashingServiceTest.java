@@ -7,30 +7,29 @@ import sas.base.BaseTest;
 import sas.service.services.HashingService;
 
 public class HashingServiceTest extends BaseTest {
+    private final static String TEST_PASSWORD = "myTestPassword";
+    private final static String OTHER_TEST_PASSWORD = "myTestPassword2";
     @Autowired
     HashingService hashingService;
 
     @Test
     void hashShouldEncryptTheUserPassword() {
-        String password = "myTestPassword";
-        String hashedPassword = this.hashingService.hash(password);
-        Assert.assertNotEquals(password,hashedPassword);
+        String hashedPassword = this.hashingService.hash(TEST_PASSWORD);
+        Assert.assertNotEquals(TEST_PASSWORD,hashedPassword);
     }
 
     @Test
     void matchesShouldReturnTrueIfPasswordsAreMatching() {
-        String password = "myTestPassword";
-        String encrypted = this.hashingService.hash(password);
-        boolean matches = this.hashingService.matches(password,encrypted);
+        String encrypted = this.hashingService.hash(TEST_PASSWORD);
+        boolean matches = this.hashingService.matches(TEST_PASSWORD,encrypted);
         Assert.assertTrue(matches);
     }
 
     @Test
     void matchesShouldReturnFalseIfPasswordsNotMatching() {
-        String password = "myTestPassword";
-        String encrypted = this.hashingService.hash(password);
-        String otherPassword = "otherPassword";
-        boolean matches = this.hashingService.matches(otherPassword,encrypted);
+        String encrypted = this.hashingService.hash(TEST_PASSWORD);
+
+        boolean matches = this.hashingService.matches(OTHER_TEST_PASSWORD,encrypted);
         Assert.assertFalse(matches);
     }
 

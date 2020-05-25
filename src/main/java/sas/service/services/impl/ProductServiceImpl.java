@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    private static final String REFRIGERATOR  = "refrigerator";
-    private static final String AIR_CONDITIONER  = "air-conditioner";
-    private static final String BOILER  = "boiler";
-    private static final String WASHING_MACHINE  = "washing-machine";
+    private static final String REFRIGERATOR = "refrigerator";
+    private static final String AIR_CONDITIONER = "air-conditioner";
+    private static final String BOILER = "boiler";
+    private static final String WASHING_MACHINE = "washing-machine";
     private final ProductRepository productRepository;
     private final ModelMapper mapper;
     private final CloudinaryService cloudinaryService;
@@ -31,13 +31,42 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductServiceModel getById(String id) {
-        return this.mapper.map(this.productRepository.findById(id),ProductServiceModel.class);
+        return this.mapper.map(this.productRepository.findById(id), ProductServiceModel.class);
+    }
+
+    @Override
+    public ProductServiceModel getByModel(String model) {
+        return this.mapper.map(this.productRepository.findByModel(model), ProductServiceModel.class);
+    }
+
+    @Override
+    public List<RefrigeratorServiceModel> getAllRefrigerators() {
+        List<Product> refrigerators = this.productRepository.findAllByType(REFRIGERATOR);
+        return refrigerators.stream().map(refrigerator -> this.mapper.map(refrigerator, RefrigeratorServiceModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AirConditionerServiceModel> getAllAirConditioners() {
+        List<Product> airConditioners = this.productRepository.findAllByType(AIR_CONDITIONER);
+        return airConditioners.stream().map(airConditioner -> this.mapper.map(airConditioner, AirConditionerServiceModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BoilerServiceModel> getAllBoilers() {
+        List<Product> boilers = this.productRepository.findAllByType(BOILER);
+        return boilers.stream().map(boiler -> this.mapper.map(boiler, BoilerServiceModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<WashingMachineServiceModel> getAllWashingMachines() {
+        List<Product> washingMachines = this.productRepository.findAllByType(WASHING_MACHINE);
+        return washingMachines.stream().map(washingMachine -> this.mapper.map(washingMachine, WashingMachineServiceModel.class)).collect(Collectors.toList());
     }
 
     @Override
     public void addRefrigerator(ProductServiceModel product) throws IOException {
         String imageUrl = this.cloudinaryService.uploadImage(product.getImage());
-        Refrigerator refrigerator = this.mapper.map(product,Refrigerator.class);
+        Refrigerator refrigerator = this.mapper.map(product, Refrigerator.class);
         refrigerator.setImageUrl(imageUrl);
         this.productRepository.saveAndFlush(refrigerator);
     }
@@ -45,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addWashingMachine(ProductServiceModel product) throws IOException {
         String imageUrl = this.cloudinaryService.uploadImage(product.getImage());
-        WashingMachine washingMachine = this.mapper.map(product,WashingMachine.class);
+        WashingMachine washingMachine = this.mapper.map(product, WashingMachine.class);
         washingMachine.setImageUrl(imageUrl);
         this.productRepository.saveAndFlush(washingMachine);
     }
@@ -53,7 +82,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addBoiler(ProductServiceModel product) throws IOException {
         String imageUrl = this.cloudinaryService.uploadImage(product.getImage());
-        Boiler boiler = this.mapper.map(product,Boiler.class);
+        Boiler boiler = this.mapper.map(product, Boiler.class);
         boiler.setImageUrl(imageUrl);
         this.productRepository.saveAndFlush(boiler);
     }
@@ -61,38 +90,23 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addAirConditioner(ProductServiceModel product) throws IOException {
         String imageUrl = this.cloudinaryService.uploadImage(product.getImage());
-        AirConditioner airConditioner = this.mapper.map(product,AirConditioner.class);
+        AirConditioner airConditioner = this.mapper.map(product, AirConditioner.class);
         airConditioner.setImageUrl(imageUrl);
         this.productRepository.saveAndFlush(airConditioner);
     }
 
     @Override
-    public List<RefrigeratorServiceModel> getAllRefrigerators() {
-        List<Product> refrigerators = this.productRepository.findAllByType(REFRIGERATOR);
-        return refrigerators.stream().map(refrigerator-> this.mapper.map(refrigerator,RefrigeratorServiceModel.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<AirConditionerServiceModel> getAllAirConditioners() {
-        List<Product> airConditioners = this.productRepository.findAllByType(AIR_CONDITIONER);
-        return airConditioners.stream().map(airConditioner-> this.mapper.map(airConditioner,AirConditionerServiceModel.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<BoilerServiceModel> getAllBoilers() {
-        List<Product> boilers = this.productRepository.findAllByType(BOILER);
-        return boilers.stream().map(boiler-> this.mapper.map(boiler,BoilerServiceModel.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<WashingMachineServiceModel> getAllWashingMachines() {
-        List<Product> washingMachines = this.productRepository.findAllByType(WASHING_MACHINE);
-        return washingMachines.stream().map(washingMachine-> this.mapper.map(washingMachine,WashingMachineServiceModel.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public ProductServiceModel getProductByModel(String model) {
-        return this.mapper.map(this.productRepository.findByModel(model),ProductServiceModel.class);
+    public void editProduct(ProductServiceModel productServiceModel) throws IOException {
+        Product product = this.productRepository.findByModel(productServiceModel.getModel());
+        product.setPrice(productServiceModel.getPrice());
+        if (productServiceModel.getImage() != null) {
+            boolean hasImage = !productServiceModel.getImage().getOriginalFilename().isEmpty();
+            if (hasImage) {
+                String imageUrl = this.cloudinaryService.uploadImage(productServiceModel.getImage());
+                product.setImageUrl(imageUrl);
+            }
+        }
+        this.productRepository.saveAndFlush(product);
     }
 
     @Override

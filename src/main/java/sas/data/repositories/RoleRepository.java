@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import sas.data.models.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role,String> {
+public interface RoleRepository extends JpaRepository<Role, String> {
     Role findByAuthority(String auth);
 }
