@@ -23,5 +23,5 @@ public abstract class BaseEntity {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id", nullable = false, unique = true, updatable = false)
-    String id;
+    private String id;
 }
